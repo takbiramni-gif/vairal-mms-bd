@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vairal MMS BD</title>
+<style>
+body{margin:0;background:#10131b;color:white;font-family:Arial,sans-serif}
+header{background:#191f2c;padding:22px;text-align:center}
+h1{color:#36b9ff;margin:0}
+main{max-width:800px;margin:25px auto;padding:15px}
+input{box-sizing:border-box;width:100%;padding:14px;border-radius:9px;border:0;margin:10px 0;font-size:16px}
+.card{background:#1b2332;padding:18px;border-radius:12px;margin-top:20px}
+video{width:100%;max-height:65vh;background:#000;border-radius:8px}
+.note{color:#c5ccda;line-height:1.6}
+</style>
+</head>
+<body>
+<header>
+<h1>Vairal MMS BD</h1>
+<p>Video Learning Center</p>
+</header>
+<main>
+<input id="search" placeholder="ভিডিও খুঁজুন..." oninput="findVideo()">
+<div class="card">
+<h2 id="title">শিক্ষামূলক ভিডিও</h2>
+<video id="player" controls playsinline preload="metadata"></video>
+<p class="note" id="message">ভিডিও দেখতে ভিডিওর সরাসরি URL যোগ করতে হবে।</p>
+</div>
+<p class="note">Vairal MMS BD — Video Library</p>
+</main>
+<script>
+const params = new URLSearchParams(location.search);
+const video = params.get('video');
+const name = params.get('title');
+if(video){
+  document.getElementById('player').src=video;
+  document.getElementById('title').textContent=name || 'ভিডিও দেখুন';
+  document.getElementById('message').textContent='ভিডিও চালাতে Play চাপুন।';
+}
+function findVideo(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const t=document.getElementById('title');
+  t.style.display=t.textContent.toLowerCase().includes(q)?'block':'none';
+}
+</script>
+</body>
+</html>
